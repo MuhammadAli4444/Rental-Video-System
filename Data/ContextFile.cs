@@ -9,38 +9,61 @@ namespace restapipractise.Data
         {
 
         }
-        public DbSet<Customer> CustomerObject { get; set; }
-        public DbSet<Manager> ManagerObject { get; set; }
-        public DbSet<VideoCasste> VideoCasseteObject { get; set; }
-        public DbSet<Store> SingleStore { get; set; }
-        public DbSet<Collection> Collection { get; set; }
+        public DbSet<Store> Store { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Manager> ManagerTable { get; set; }
+        public DbSet<VideoCasste> VideoCassete { get; set; }
+        public DbSet<ReminderEmail> ReminderEmail { get; set; }
+      
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Manager>().HasData(
-                new Manager
-                {
-                    ManagerId = 1,
-                    Name = "MAMB",
-                    Email = "ali123mazhar@gmail.com",
-                    MobileNumber = "03035024309"
-                });
-                modelBuilder.Entity<Customer>().HasData(
-                new Customer
-                {
-                    CustomerId = 1,
-                    Name = "MAMB",
-                    Email = "ali123mazhar@gmail.com",
-                    MobileNumber = "03035024309"
-                });
-            modelBuilder.Entity<VideoCasste>().HasData(
-            new VideoCasste
+          //  base.OnModelCreating(modelBuilder);
+           // modelBuilder.Seed();
+            foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
-                VideoId = 1,
-                TitleName = "Abcd2",
-                Description = "This is the flop movie and one of the floppest movies in the world",
-                Price = 5
+                foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
-            );
+
+            modelBuilder.Entity<ApplicationUser>().HasData(
+                new ApplicationUser
+                {
+                    GenericId = 1,
+                    Name = "MAMB",
+                    Email = "ali123mazhar@gmail.com",
+                    MobileNumber = "03035024309",
+                    Role = "Manager"
+                },
+                  new ApplicationUser
+                  {
+                      GenericId = 2,
+                      Name = "Abdullah",
+                      Email = "abdullah@gmail.com",
+                      MobileNumber = "03035024308",
+                      Role = "Customer"
+                  }
+                ) ;
+            modelBuilder.Entity<Manager>().HasData(
+new Manager
+{
+
+Id = 1
+});
+            modelBuilder.Entity<Customer>().HasData(
+new Customer
+{
+
+    Id = 1
+});
+            modelBuilder.Entity<VideoCasste>().HasData(
+new VideoCasste
+{
+    VideoId = 1,
+    TitleName = "Abcd2",
+    Description = "Amazing movie",
+    Price = 100
+});
+
         }
     }
 }

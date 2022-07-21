@@ -7,10 +7,10 @@ namespace RentalVideoSystem.Modals
         [Key]
         public int StoreId { get; set; }
 
-        public IEnumerable<Customer> customers { get; set; }
+        public ICollection<ApplicationUser> ApplicationUser { get; set; }
 
-        public Manager Manager_Obj { get; set; }
+        public Manager? Manager_Obj { get; set; }
     
-        public Collection collection_ { get; set; }
+        public ICollection<VideoCasste> VideoCollection{ get; set; }
     }
 }
