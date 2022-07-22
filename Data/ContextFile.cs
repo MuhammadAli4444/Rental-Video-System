@@ -15,7 +15,8 @@ namespace restapipractise.Data
         public DbSet<Manager> ManagerTable { get; set; }
         public DbSet<VideoCasste> VideoCassete { get; set; }
         public DbSet<ReminderEmail> ReminderEmail { get; set; }
-      
+        public DbSet<RentalVideoCasset> RentalVideoCasset { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
           //  base.OnModelCreating(modelBuilder);
