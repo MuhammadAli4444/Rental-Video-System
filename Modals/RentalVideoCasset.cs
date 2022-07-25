@@ -1,15 +1,16 @@
 ﻿namespace RentalVideoSystem.Modals
 {
-    public class VideoCassete
+    public class RentalVideoCasset
     {
         public int Id { get; set; }
         public DateTime? ReturnDate { get; set; }
         public DateTime? BorrowDate { get; set; } = DateTime.Now;
-        public Customer? CustomerID { get; set; }
-        public VideoCasste? VideoID { get; set; }
-        public bool Status { get; set; }
+       public int CustomerID { get; set; }
+       public int VideoID { get; set; }
 
 
+     //   public Customer Customer { get; set; }
+      //  public VideoCasste Video { get; set; }
 
 
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RentalVideoSystem.Modals;
-using RentalVideoSystem.Repository;
+
 using restapipractise.Data;
 
 namespace RentalVideoSystem.Controllers
@@ -22,9 +22,9 @@ namespace RentalVideoSystem.Controllers
             return _context.VideoCassete;
         }
         [HttpPost]
-        public void RentVideo([FromBody] ReminderEmail ReminderEmaill)
+        public void RentVideo([FromBody] RentalVideoCasset RentalVideoCassetObj)
         {
-            _context.ReminderEmail.Add(ReminderEmaill);
+            _context.RentalVideoCasset.Add(RentalVideoCassetObj);
             //  _context.Customer.Add(Users);
             _context.SaveChanges();
         }

@@ -5,10 +5,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RentalVideoSystem.Migrations
 {
-    public partial class abc : Migration
+    public partial class abcdefp : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "RentalVideoCasset",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    BorrowDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CustomerID = table.Column<int>(type: "int", nullable: false),
+                    VideoID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RentalVideoCasset", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "ApplicationUser",
                 columns: table => new
@@ -70,8 +86,8 @@ namespace RentalVideoSystem.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BorrowDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    BorrowDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Subject = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CustomerId = table.Column<int>(type: "int", nullable: true)
@@ -128,35 +144,6 @@ namespace RentalVideoSystem.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "RentalVideoCasset",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    BorrowDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CustomerIDId = table.Column<int>(type: "int", nullable: true),
-                    VideoId = table.Column<int>(type: "int", nullable: true),
-                    Status = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RentalVideoCasset", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RentalVideoCasset_Customer_CustomerIDId",
-                        column: x => x.CustomerIDId,
-                        principalTable: "Customer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_RentalVideoCasset_VideoCassete_VideoId",
-                        column: x => x.VideoId,
-                        principalTable: "VideoCassete",
-                        principalColumn: "VideoId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.InsertData(
                 table: "ApplicationUser",
                 columns: new[] { "GenericId", "Email", "MobileNumber", "Name", "Role", "StoreId" },
@@ -202,16 +189,6 @@ namespace RentalVideoSystem.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RentalVideoCasset_CustomerIDId",
-                table: "RentalVideoCasset",
-                column: "CustomerIDId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RentalVideoCasset_VideoId",
-                table: "RentalVideoCasset",
-                column: "VideoId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Store_Manager_ObjId",
                 table: "Store",
                 column: "Manager_ObjId");
@@ -243,10 +220,10 @@ namespace RentalVideoSystem.Migrations
                 name: "RentalVideoCasset");
 
             migrationBuilder.DropTable(
-                name: "Customer");
+                name: "VideoCassete");
 
             migrationBuilder.DropTable(
-                name: "VideoCassete");
+                name: "Customer");
 
             migrationBuilder.DropTable(
                 name: "Store");

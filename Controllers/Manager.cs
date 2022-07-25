@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RentalVideoSystem.Modals;
-using RentalVideoSystem.Repository;
 using restapipractise.Data;
 
 namespace RentalVideoSystem.Controllers
@@ -46,6 +45,14 @@ namespace RentalVideoSystem.Controllers
         public IEnumerable<ReminderEmail> GetAllReminderEmailDetails()
         {
             return _context.ReminderEmail;
+        }
+        [HttpGet]
+
+        public ActionResult<IEnumerable<RentalVideoCasset>> GetAllRentedVideosDetails()
+        {
+            var resultt = _context.RentalVideoCasset;//.Include(c => c.Customer).Include(c => c.Video).ToList();
+            return Ok(resultt);
+
         }
         //---------------------------------------------------------------------
         [HttpPost]
