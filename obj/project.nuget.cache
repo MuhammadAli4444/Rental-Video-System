@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "TTv99JbB8V4V0jVB4LgK20dJtqNl0edtIhbbCHu1/4Ay82OR9Bp/23+Sy1vK+nPPl9PKSQhyH5e1B0X8S2zC/g==",
+  "dgSpecHash": "uVkKA8nvxZi6HxAeEdrzu9q+cAmOF0Bab11g0onWDncGJlDh+0viBKrDMSYXoaop5m7sFKqGyZD4hrBmE3wRCw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ali.mazhar\\source\\repos\\RentalVideoSystem\\RentalVideoSystem.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ali.mazhar\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\ali.mazhar\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\ali.mazhar\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\ali.mazhar\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\ali.mazhar\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\ali.mazhar\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\ali.mazhar\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.0\\microsoft.entityframeworkcore.6.0.0.nupkg.sha512",

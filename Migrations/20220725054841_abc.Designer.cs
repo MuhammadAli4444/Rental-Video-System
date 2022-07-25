@@ -12,8 +12,8 @@ using restapipractise.Data;
 namespace RentalVideoSystem.Migrations
 {
     [DbContext(typeof(ContextFile))]
-    [Migration("20220721114120_a")]
-    partial class a
+    [Migration("20220725054841_abc")]
+    partial class abc
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -172,6 +172,38 @@ namespace RentalVideoSystem.Migrations
                     b.ToTable("Store");
                 });
 
+            modelBuilder.Entity("RentalVideoSystem.Modals.VideoCassete", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("BorrowDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CustomerIDId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("VideoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerIDId");
+
+                    b.HasIndex("VideoId");
+
+                    b.ToTable("RentalVideoCasset");
+                });
+
             modelBuilder.Entity("RentalVideoSystem.Modals.VideoCasste", b =>
                 {
                     b.Property<int>("VideoId")
@@ -254,6 +286,23 @@ namespace RentalVideoSystem.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Manager_Obj");
+                });
+
+            modelBuilder.Entity("RentalVideoSystem.Modals.VideoCassete", b =>
+                {
+                    b.HasOne("RentalVideoSystem.Modals.Customer", "CustomerID")
+                        .WithMany()
+                        .HasForeignKey("CustomerIDId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("RentalVideoSystem.Modals.VideoCasste", "VideoID")
+                        .WithMany()
+                        .HasForeignKey("VideoId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("CustomerID");
+
+                    b.Navigation("VideoID");
                 });
 
             modelBuilder.Entity("RentalVideoSystem.Modals.VideoCasste", b =>

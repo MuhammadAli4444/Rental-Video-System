@@ -1,6 +1,6 @@
 ﻿namespace RentalVideoSystem.Modals
 {
-    public class RentalVideoCasset
+    public class VideoCassete
     {
         public int Id { get; set; }
         public DateTime? ReturnDate { get; set; }

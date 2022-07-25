@@ -6,15 +6,18 @@ namespace RentalVideoSystem.Modals
     {
         [Key]
         public int GenericId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Please Enter your Name")]
         public string? Name { get; set; }
         [Required]
-
+        [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
         [MaxLength(11)]
         [MinLength(11)]
+       // [DataType(DataType.PhoneNumber)]
         public string? MobileNumber { get; set; }
         [Required]
         public string ? Role { get; set; }
+
+        
     }
 }

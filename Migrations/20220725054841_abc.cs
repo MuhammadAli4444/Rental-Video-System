@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RentalVideoSystem.Migrations
 {
-    public partial class a : Migration
+    public partial class abc : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -128,6 +128,35 @@ namespace RentalVideoSystem.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RentalVideoCasset",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    BorrowDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CustomerIDId = table.Column<int>(type: "int", nullable: true),
+                    VideoId = table.Column<int>(type: "int", nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RentalVideoCasset", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RentalVideoCasset_Customer_CustomerIDId",
+                        column: x => x.CustomerIDId,
+                        principalTable: "Customer",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_RentalVideoCasset_VideoCassete_VideoId",
+                        column: x => x.VideoId,
+                        principalTable: "VideoCassete",
+                        principalColumn: "VideoId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "ApplicationUser",
                 columns: new[] { "GenericId", "Email", "MobileNumber", "Name", "Role", "StoreId" },
@@ -173,6 +202,16 @@ namespace RentalVideoSystem.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RentalVideoCasset_CustomerIDId",
+                table: "RentalVideoCasset",
+                column: "CustomerIDId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RentalVideoCasset_VideoId",
+                table: "RentalVideoCasset",
+                column: "VideoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Store_Manager_ObjId",
                 table: "Store",
                 column: "Manager_ObjId");
@@ -201,10 +240,13 @@ namespace RentalVideoSystem.Migrations
                 name: "ReminderEmail");
 
             migrationBuilder.DropTable(
-                name: "VideoCassete");
+                name: "RentalVideoCasset");
 
             migrationBuilder.DropTable(
                 name: "Customer");
+
+            migrationBuilder.DropTable(
+                name: "VideoCassete");
 
             migrationBuilder.DropTable(
                 name: "Store");
