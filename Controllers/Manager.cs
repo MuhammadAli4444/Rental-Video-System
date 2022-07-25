@@ -62,5 +62,12 @@ namespace RentalVideoSystem.Controllers
             //  _context.Customer.Add(Users);
             _context.SaveChanges();
         }
+        [HttpPost]
+        public void AddVideo([FromBody] VideoCasste VideoCasste)
+        {
+            _context.VideoCassete.Add(VideoCasste);
+            //  _context.Customer.Add(Users);
+            _context.SaveChanges();
+        }
     }
 }

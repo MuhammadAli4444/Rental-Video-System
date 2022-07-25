@@ -22,9 +22,9 @@ namespace RentalVideoSystem.Controllers
             return _context.VideoCassete;
         }
         [HttpPost]
-        public void AddVideo([FromBody] Customer Users)
+        public void RentVideo([FromBody] ReminderEmail ReminderEmaill)
         {
-            _context.Customer.Add(Users);
+            _context.ReminderEmail.Add(ReminderEmaill);
             //  _context.Customer.Add(Users);
             _context.SaveChanges();
         }

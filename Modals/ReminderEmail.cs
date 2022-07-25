@@ -6,8 +6,8 @@ namespace RentalVideoSystem.Modals
     {
         [Key]
         public int Id { get; set; }
-        public DateTime ReturnDate { get; set; }
-        public DateTime BorrowDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
+        public DateTime? BorrowDate { get; set; }
         public String? Subject { get; set; }
         public String? Message { get; set; }
         public int? CustomerId { get; set; }
