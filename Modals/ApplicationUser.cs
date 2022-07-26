@@ -6,10 +6,11 @@ namespace RentalVideoSystem.Modals
     {
         [Key]
         public int GenericId { get; set; }
+
         [Required(ErrorMessage ="Please Enter your Name")]
         public string? Name { get; set; }
         [Required]
-        [DataType(DataType.EmailAddress)]
+        [RegularExpression(".+\\@.+\\..+",ErrorMessage ="Please Enter valid email")]
         public string? Email { get; set; }
         [MaxLength(11)]
         [MinLength(11)]
