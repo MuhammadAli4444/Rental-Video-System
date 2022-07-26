@@ -64,5 +64,11 @@ namespace RentalVideoSystem.Repository
             yield return _context.ApplicationUser.Where(p => p.GenericId == id)
                 .FirstOrDefault();
         }
+        public void DeleteCustomer(int id)
+        {
+            var customer = _context.ApplicationUser.Find(id);
+            _context.ApplicationUser.Remove(customer);
+            _context.SaveChanges();
+        }
     }
 }

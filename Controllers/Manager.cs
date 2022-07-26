@@ -17,9 +17,16 @@ namespace RentalVideoSystem.Controllers
         }
         [HttpGet("{id}")]
 
-        public IEnumerable<ApplicationUser> GetApplicationUserById(int id)
+        public ActionResult<IEnumerable<ApplicationUser>> GetApplicationUserById(int id)
         {
-          return _managerRepo.GetApplicationUserById(id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid Id Entered");
+            }
+            return Ok(ModelState);
+
+    
+          
         }
         [HttpGet]
 
@@ -49,7 +56,8 @@ namespace RentalVideoSystem.Controllers
 
         public ActionResult<IEnumerable<RentalVideoCasset>> GetAllRentedVideosDetails()
         {
-            return _managerRepo.GetAllRentedVideosDetails();
+
+            return Ok(_managerRepo.GetAllRentedVideosDetails());
         }
         //---------------------------------------------------------------------
         [HttpPost]
@@ -67,5 +75,6 @@ namespace RentalVideoSystem.Controllers
         {
             _managerRepo.AddVideo(VideoCasste);
         }
+       
     }
 }

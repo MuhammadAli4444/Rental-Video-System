@@ -43,5 +43,6 @@ namespace RentalVideoSystem.Repository
             _context.RentalVideoCasset.Add(simple);
             _context.SaveChanges();
         }
+
     }
 }

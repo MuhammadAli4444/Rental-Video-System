@@ -10,6 +10,6 @@ namespace RentalVideoSystem.Interfaces
         public void RentVideo([FromBody] RentalVideoCasset RentalVideoCassetObj);
         public void ReturnVideo(int id);
         public void Deletee(int id);
-
+      
     }
 }

@@ -14,6 +14,6 @@ namespace RentalVideoSystem.Interfaces
         public void AddCustomer([FromBody] Customer Users);
         public void AddReminderEmail([FromBody] ReminderEmail ReminderEmaill);
         public void AddVideo([FromBody] VideoCasste VideoCasste);
-
+     
     }
 }

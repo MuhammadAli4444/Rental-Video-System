@@ -5,6 +5,7 @@ namespace RentalVideoSystem.Modals
     public class ApplicationUser
     {
         [Key]
+
         public int GenericId { get; set; }
 
         [Required(ErrorMessage ="Please Enter your Name")]
