@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using RentalVideoSystem.Interfaces;
 using RentalVideoSystem.Modals;
 using restapipractise.Data;
 
@@ -9,50 +10,32 @@ namespace RentalVideoSystem.Controllers
     [ApiController]
     public class CustomerController : Controller
     {
-        private readonly ContextFile _context;
-        public CustomerController(ContextFile context)
+        private readonly ICustomer _customerRepo;
+        public CustomerController(ICustomer customerRepo)
         {
-            _context = context;
+            _customerRepo = customerRepo;
         }
-  
+
         [HttpGet]
 
         public IEnumerable<VideoCasste> GetAllVideos()
         {
-            return _context.VideoCassete;
+            return _customerRepo.GetAllVideos();
         }
         [HttpPost]
         public void RentVideo([FromBody] RentalVideoCasset RentalVideoCassetObj)
         {
-            _context.RentalVideoCasset.Add(RentalVideoCassetObj);
-            //  _context.Customer.Add(Users);
-            _context.SaveChanges();
+           _customerRepo.RentVideo(RentalVideoCassetObj);
         }
         [HttpPost("{id}")]
         public  void ReturnVideo(int id)
         {
-
-            var categoryFromDb = _context.RentalVideoCasset.Find(id);
-            RentalVideoCasset simple = new RentalVideoCasset();
-            simple.ReturnDate = DateTime.Now;
-            simple.Status = "Returned";
-            simple.CustomerID = categoryFromDb.CustomerID;
-            simple.VideoID = categoryFromDb.VideoID;
-            simple.BorrowDate = categoryFromDb.BorrowDate;
-            Deletee(id);
-      //      _context.RentalVideoCasset.Remove(categoryFromDb);
-      //     _context.SaveChanges();
-
-
-            _context.RentalVideoCasset.Add(simple);
-            _context.SaveChanges();
+            _customerRepo.ReturnVideo(id);
         }
         [HttpDelete("{id}")]
         public void Deletee(int id)
         {
-            var categoryFromDb = _context.RentalVideoCasset.Find(id);
-            _context.RentalVideoCasset.Remove(categoryFromDb);
-            _context.SaveChanges();
+            _customerRepo.Deletee(id);
         }
     }
 }

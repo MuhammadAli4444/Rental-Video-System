@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RentalVideoSystem.Interfaces;
 using RentalVideoSystem.Modals;
 using restapipractise.Data;
 
@@ -9,72 +10,62 @@ namespace RentalVideoSystem.Controllers
     [ApiController]
     public class Manager : Controller
     {
-        private readonly ContextFile _context;
-        public Manager(ContextFile context)
+        private readonly IManager _managerRepo;
+        public Manager(IManager managerRepo)
         {
-            _context = context;
+              _managerRepo = managerRepo;
         }
         [HttpGet("{id}")]
 
         public IEnumerable<ApplicationUser> GetApplicationUserById(int id)
         {
-            yield return _context.ApplicationUser.Where(p => p.GenericId == id)
-                .FirstOrDefault();
+          return _managerRepo.GetApplicationUserById(id);
         }
         [HttpGet]
 
         public IEnumerable<ApplicationUser> GetAllApplicationUser()
         {
-            return _context.ApplicationUser;
+           return _managerRepo.GetAllApplicationUser();
         }
         [HttpGet]
 
         public ActionResult<IEnumerable<Customer>> GetAllCustomers()
         {
-            var resultt = _context.Customer.Include(c => c.ApplicationUser).ToList();
-            return Ok(resultt);
+            return _managerRepo.GetAllCustomers();
         }
         [HttpGet]
 
         public IEnumerable<VideoCasste> GetAllVideos()
         {
-            return _context.VideoCassete;
+            return _managerRepo.GetAllVideos();
         }
         [HttpGet]
 
         public IEnumerable<ReminderEmail> GetAllReminderEmailDetails()
         {
-            return _context.ReminderEmail;
+            return _managerRepo.GetAllReminderEmailDetails();
         }
         [HttpGet]
 
         public ActionResult<IEnumerable<RentalVideoCasset>> GetAllRentedVideosDetails()
         {
-            var resultt = _context.RentalVideoCasset;//.Include(c => c.Customer).Include(c => c.Video).ToList();
-            return Ok(resultt);
-
+            return _managerRepo.GetAllRentedVideosDetails();
         }
         //---------------------------------------------------------------------
         [HttpPost]
         public void AddCustomer([FromBody] Customer Users )
         {
-            _context.Customer.Add(Users);
-          //  _context.Customer.Add(Users);
-            _context.SaveChanges();
+            _managerRepo.AddCustomer(Users);
         }
         [HttpPost]
         public void AddReminderEmail([FromBody] ReminderEmail ReminderEmaill)
         {
-            _context.ReminderEmail.Add(ReminderEmaill);
-            //  _context.Customer.Add(Users);
-            _context.SaveChanges();
+             _managerRepo.AddReminderEmail(ReminderEmaill);
         }
         [HttpPost]
         public void AddVideo([FromBody] VideoCasste VideoCasste)
         {
-            _context.VideoCassete.Add(VideoCasste);
-            //  _context.Customer.Add(Users);
-            _context.SaveChanges();
+            _managerRepo.AddVideo(VideoCasste);
         }
     }
 }

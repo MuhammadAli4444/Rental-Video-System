@@ -17,7 +17,7 @@ namespace RentalVideoSystem.Modals
        // [DataType(DataType.PhoneNumber)]
         public string? MobileNumber { get; set; }
         [Required]
-        public string ? Role { get; set; }
+        public string? Role { get; set; } = "Customer";
 
         
     }
