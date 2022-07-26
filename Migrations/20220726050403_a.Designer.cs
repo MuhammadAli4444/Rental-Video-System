@@ -12,8 +12,8 @@ using restapipractise.Data;
 namespace RentalVideoSystem.Migrations
 {
     [DbContext(typeof(ContextFile))]
-    [Migration("20220725135517_aa")]
-    partial class aa
+    [Migration("20220726050403_a")]
+    partial class a
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -170,6 +170,9 @@ namespace RentalVideoSystem.Migrations
 
                     b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VideoID")
                         .HasColumnType("int");

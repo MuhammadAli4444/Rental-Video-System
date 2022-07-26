@@ -169,6 +169,9 @@ namespace RentalVideoSystem.Migrations
                     b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("VideoID")
                         .HasColumnType("int");
 

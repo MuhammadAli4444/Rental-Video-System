@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RentalVideoSystem.Migrations
 {
-    public partial class abcdefp : Migration
+    public partial class a : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,7 +18,8 @@ namespace RentalVideoSystem.Migrations
                     ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     BorrowDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CustomerID = table.Column<int>(type: "int", nullable: false),
-                    VideoID = table.Column<int>(type: "int", nullable: false)
+                    VideoID = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
