@@ -11,6 +11,6 @@ namespace RentalVideoSystem.Modals
 
         public Manager? Manager_Obj { get; set; }
     
-        public ICollection<VideoCasste> VideoCollection{ get; set; }
+        public ICollection<VideoCollection> VideoCollection{ get; set; }
     }
 }

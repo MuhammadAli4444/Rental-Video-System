@@ -8,34 +8,24 @@ namespace RentalVideoSystem.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class CustomerController : Controller
+    public class CustomerController : ControllerBase
     {
         private readonly ICustomer _customerRepo;
         public CustomerController(ICustomer customerRepo)
         {
             _customerRepo = customerRepo;
         }
-
         [HttpGet]
 
-        public IEnumerable<VideoCasste> GetAllVideos()
+        public ActionResult<IEnumerable<Customer>> GetAllCustomers()
         {
-            return _customerRepo.GetAllVideos();
+            return _customerRepo.GetAllCustomers();
         }
         [HttpPost]
-        public void RentVideo([FromBody] RentalVideoCasset RentalVideoCassetObj)
+        public void AddCustomer([FromBody] Customer Users)
         {
-           _customerRepo.RentVideo(RentalVideoCassetObj);
+            _customerRepo.AddCustomer(Users);
         }
-        [HttpPost("{id}")]
-        public  void ReturnVideo(int id)
-        {
-            _customerRepo.ReturnVideo(id);
-        }
-        [HttpDelete("{id}")]
-        public void Deletee(int id)
-        {
-            _customerRepo.Deletee(id);
-        }
+
     }
 }

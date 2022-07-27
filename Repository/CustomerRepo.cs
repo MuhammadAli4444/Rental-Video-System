@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RentalVideoSystem.Interfaces;
 using RentalVideoSystem.Modals;
 using restapipractise.Data;
@@ -13,36 +14,18 @@ namespace RentalVideoSystem.Repository
         {
             _context = context;
         }
-        public void Deletee(int id)
+
+
+        public void AddCustomer(Customer Users)
         {
-            var categoryFromDb = _context.RentalVideoCasset.Find(id);
-            _context.RentalVideoCasset.Remove(categoryFromDb);
+            _context.Customer.Add(Users);
             _context.SaveChanges();
         }
 
-        public IEnumerable<VideoCasste> GetAllVideos()
+        public ActionResult<IEnumerable<Customer>> GetAllCustomers()
         {
-            return _context.VideoCassete;
+           return _context.Customer.Include(c => c.ApplicationUser).ToList();
+      
         }
-
-        public void RentVideo([FromBody] RentalVideoCasset RentalVideoCassetObj)
-        {
-            _context.RentalVideoCasset.Add(RentalVideoCassetObj);
-            _context.SaveChanges();
-        }
-
-        public void ReturnVideo(int id)
-        {
-            var categoryFromDb = _context.RentalVideoCasset.Find(id);
-            RentalVideoCasset simple = new RentalVideoCasset();
-            simple.ReturnDate = DateTime.Now;
-            simple.Status = "Returned";
-            simple.CustomerID = categoryFromDb.CustomerID;
-            simple.VideoID = categoryFromDb.VideoID;
-            simple.BorrowDate = categoryFromDb.BorrowDate;
-            _context.RentalVideoCasset.Add(simple);
-            _context.SaveChanges();
-        }
-
     }
 }

@@ -1,8 +1,11 @@
+
+global using RentalVideoSystem.Services.EmailService;
+using RentalVideoSystem.Modals;
 using Microsoft.EntityFrameworkCore;
 using RentalVideoSystem.Interfaces;
 using RentalVideoSystem.Repository;
+using RentalVideoSystem.Services.EmailService;
 using restapipractise.Data;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,8 +16,14 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ContextFile>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<IManager, ManagerRepo>();
+
 builder.Services.AddScoped<ICustomer, CustomerRepo>();
+builder.Services.AddScoped<IApplicationUser, ApplicationUserRepo>();
+
+builder.Services.AddScoped<IVideoCollection, VideoCollectionRepo>();
+
+builder.Services.AddScoped<IRentedVideos, RentedVideosRepo>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

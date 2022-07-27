@@ -12,10 +12,11 @@ namespace restapipractise.Data
         public DbSet<Store> Store { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Customer> Customer { get; set; }
+        public DbSet<Manager> Manager { get; set; }
         public DbSet<Manager> ManagerTable { get; set; }
-        public DbSet<VideoCasste> VideoCassete { get; set; }
-        public DbSet<ReminderEmail> ReminderEmail { get; set; }
-        public DbSet<RentalVideoCasset> RentalVideoCasset { get; set; }
+        public DbSet<VideoCollection> VideoTable { get; set; }
+
+        public DbSet<RentedVideos> RentedVideos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -56,8 +57,8 @@ new Customer
 
     Id = 1
 });
-            modelBuilder.Entity<VideoCasste>().HasData(
-new VideoCasste
+            modelBuilder.Entity<VideoCollection>().HasData(
+new VideoCollection
 {
     VideoId = 1,
     TitleName = "Abcd2",

@@ -113,7 +113,7 @@ namespace RentalVideoSystem.Migrations
 
                     b.HasIndex("ApplicationUserGenericId");
 
-                    b.ToTable("ManagerTable");
+                    b.ToTable("Manager");
 
                     b.HasData(
                         new
@@ -122,37 +122,7 @@ namespace RentalVideoSystem.Migrations
                         });
                 });
 
-            modelBuilder.Entity("RentalVideoSystem.Modals.ReminderEmail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime?>("BorrowDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ReturnDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("ReminderEmail");
-                });
-
-            modelBuilder.Entity("RentalVideoSystem.Modals.RentalVideoCasset", b =>
+            modelBuilder.Entity("RentalVideoSystem.Modals.RentedVideos", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -177,7 +147,7 @@ namespace RentalVideoSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RentalVideoCasset");
+                    b.ToTable("RentedVideos");
                 });
 
             modelBuilder.Entity("RentalVideoSystem.Modals.Store", b =>
@@ -198,7 +168,7 @@ namespace RentalVideoSystem.Migrations
                     b.ToTable("Store");
                 });
 
-            modelBuilder.Entity("RentalVideoSystem.Modals.VideoCasste", b =>
+            modelBuilder.Entity("RentalVideoSystem.Modals.VideoCollection", b =>
                 {
                     b.Property<int>("VideoId")
                         .ValueGeneratedOnAdd()
@@ -224,7 +194,7 @@ namespace RentalVideoSystem.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("VideoCassete");
+                    b.ToTable("VideoTable");
 
                     b.HasData(
                         new
@@ -264,14 +234,6 @@ namespace RentalVideoSystem.Migrations
                     b.Navigation("ApplicationUser");
                 });
 
-            modelBuilder.Entity("RentalVideoSystem.Modals.ReminderEmail", b =>
-                {
-                    b.HasOne("RentalVideoSystem.Modals.Customer", null)
-                        .WithMany("ResponseEmail")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("RentalVideoSystem.Modals.Store", b =>
                 {
                     b.HasOne("RentalVideoSystem.Modals.Manager", "Manager_Obj")
@@ -282,17 +244,12 @@ namespace RentalVideoSystem.Migrations
                     b.Navigation("Manager_Obj");
                 });
 
-            modelBuilder.Entity("RentalVideoSystem.Modals.VideoCasste", b =>
+            modelBuilder.Entity("RentalVideoSystem.Modals.VideoCollection", b =>
                 {
                     b.HasOne("RentalVideoSystem.Modals.Store", null)
                         .WithMany("VideoCollection")
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("RentalVideoSystem.Modals.Customer", b =>
-                {
-                    b.Navigation("ResponseEmail");
                 });
 
             modelBuilder.Entity("RentalVideoSystem.Modals.Store", b =>

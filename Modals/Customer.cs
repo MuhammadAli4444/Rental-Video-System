@@ -10,7 +10,7 @@ namespace RentalVideoSystem.Modals
 
       
         public ApplicationUser? ApplicationUser { get; set; }
-        public ICollection<ReminderEmail>?  ResponseEmail { get; set; }
+       
        
     }
 }
