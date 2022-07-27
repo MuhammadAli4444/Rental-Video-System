@@ -6,6 +6,7 @@ namespace RentalVideoSystem.Interfaces
     {
         public IEnumerable<RentedVideos> GetAllRentedVideosDetails();
         public void RentVideo(RentedVideos RentalVideoCassetObj);
-public void ReturnVideo(int id);
+public void ReturnVideo(RentedVideos simple);
+        public RentedVideos GetVideoData(int id);
     }
 }

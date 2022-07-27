@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RentalVideoSystem.Interfaces;
 using RentalVideoSystem.Modals;
+using restapipractise.Data;
 
 namespace RentalVideoSystem.Controllers
 {
@@ -10,13 +11,13 @@ namespace RentalVideoSystem.Controllers
     public class RentedVideosController : ControllerBase
     {
         private readonly IRentedVideos _IRentedVideosRepo;
-        public RentedVideosController(IRentedVideos managerRepo)
+        public RentedVideosController(IRentedVideos rentedvideoRepo)
         {
-            _IRentedVideosRepo = managerRepo;
+            _IRentedVideosRepo = rentedvideoRepo;
         }
 
-
-        [HttpGet]
+       
+               [HttpGet]
 
         public ActionResult<IEnumerable<VideoCollection>> GetAllRentedVideosDetails()
         {
@@ -31,7 +32,14 @@ namespace RentalVideoSystem.Controllers
         [HttpPost("{id}")]
         public void ReturnVideo(int id)
         {
-            _IRentedVideosRepo.ReturnVideo(id);
+            var categoryFromDb = _IRentedVideosRepo.GetVideoData(id);
+            RentedVideos simple = new RentedVideos();
+            simple.ReturnDate = DateTime.Now;
+            simple.Status = "Returned";
+            simple.CustomerID = categoryFromDb.CustomerID;
+            simple.VideoID = categoryFromDb.VideoID;
+            simple.BorrowDate = categoryFromDb.BorrowDate;
+            _IRentedVideosRepo.ReturnVideo(simple);
         }
 
     }

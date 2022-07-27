@@ -12,7 +12,7 @@ namespace RentalVideoSystem.Repository
             _context = context;
         }
 
-    
+
 
         IEnumerable<RentedVideos> IRentedVideos.GetAllRentedVideosDetails()
         {
@@ -26,17 +26,15 @@ namespace RentalVideoSystem.Repository
             _context.SaveChanges();
         }
 
-        public void ReturnVideo(int id)
+        public void ReturnVideo(RentedVideos simple)
         {
-            var categoryFromDb = _context.RentedVideos.Find(id);
-            RentedVideos simple = new RentedVideos();
-            simple.ReturnDate = DateTime.Now;
-            simple.Status = "Returned";
-            simple.CustomerID = categoryFromDb.CustomerID;
-            simple.VideoID = categoryFromDb.VideoID;
-            simple.BorrowDate = categoryFromDb.BorrowDate;
+
             _context.RentedVideos.Add(simple);
             _context.SaveChanges();
+        }
+        public RentedVideos GetVideoData(int id)
+        {
+        return  _context.RentedVideos.Find(id);
         }
     }
 }
