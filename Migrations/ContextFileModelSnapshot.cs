@@ -40,7 +40,7 @@ namespace RentalVideoSystem.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Role")
                         .IsRequired()
@@ -50,6 +50,9 @@ namespace RentalVideoSystem.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("GenericId");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.HasIndex("StoreId");
 
@@ -188,11 +191,14 @@ namespace RentalVideoSystem.Migrations
 
                     b.Property<string>("TitleName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("VideoId");
 
                     b.HasIndex("StoreId");
+
+                    b.HasIndex("TitleName")
+                        .IsUnique();
 
                     b.ToTable("VideoTable");
 

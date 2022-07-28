@@ -6,6 +6,8 @@ using RentalVideoSystem.Interfaces;
 using RentalVideoSystem.Repository;
 using RentalVideoSystem.Services.EmailService;
 using restapipractise.Data;
+using RentalVideoSystem.Extension;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -25,7 +27,7 @@ builder.Services.AddScoped<IVideoCollection, VideoCollectionRepo>();
 builder.Services.AddScoped<IRentedVideos, RentedVideosRepo>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 var app = builder.Build();
-
+app.ConfigureExceptionHandler();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

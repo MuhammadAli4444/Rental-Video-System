@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RentalVideoSystem.DTO_Modals;
 using RentalVideoSystem.Interfaces;
 using RentalVideoSystem.Modals;
 using restapipractise.Data;
 
 namespace RentalVideoSystem.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class RentedVideosController : ControllerBase
     {
@@ -21,25 +22,49 @@ namespace RentalVideoSystem.Controllers
 
         public ActionResult<IEnumerable<VideoCollection>> GetAllRentedVideosDetails()
         {
+            try { 
+                return Ok(_IRentedVideosRepo.GetAllRentedVideosDetails());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception occured as because of some internal error", ex);
+            }
+        }
 
-            return Ok(_IRentedVideosRepo.GetAllRentedVideosDetails());
-        }
         [HttpPost]
-        public void RentVideo([FromBody] RentedVideos RentalVideoCassetObj)
+        public void RentVideo([FromBody] RentedVideoDTOModal RentalVideoCassetObj)
         {
-            _IRentedVideosRepo.RentVideo(RentalVideoCassetObj);
+            try
+            {
+                _IRentedVideosRepo.RentVideo(RentalVideoCassetObj);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception occured as because of some internal error", ex);
+            }
         }
-        [HttpPost("{id}")]
-        public void ReturnVideo(int id)
+        [HttpPut("{id}")]
+        public IActionResult ReturnVideo(int id)
         {
-            var categoryFromDb = _IRentedVideosRepo.GetVideoData(id);
-            RentedVideos simple = new RentedVideos();
-            simple.ReturnDate = DateTime.Now;
-            simple.Status = "Returned";
-            simple.CustomerID = categoryFromDb.CustomerID;
-            simple.VideoID = categoryFromDb.VideoID;
-            simple.BorrowDate = categoryFromDb.BorrowDate;
-            _IRentedVideosRepo.ReturnVideo(simple);
+            try
+            {
+                if (_IRentedVideosRepo.ReturnVideo(id) == 0)
+                {
+                    return NotFound("Video Already returned");
+                }
+                else if (_IRentedVideosRepo.ReturnVideo(id) == 1)
+                {
+                    return Ok("Video has been successfully returned");
+                }
+                else
+                {
+                    return NotFound("Video not exist in the Rented Videos Collection");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception occured as because of some internal error", ex);
+            }
         }
 
     }

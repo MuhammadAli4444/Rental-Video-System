@@ -13,7 +13,6 @@ namespace restapipractise.Data
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Manager> Manager { get; set; }
-        public DbSet<Manager> ManagerTable { get; set; }
         public DbSet<VideoCollection> VideoTable { get; set; }
 
         public DbSet<RentedVideos> RentedVideos { get; set; }
@@ -26,7 +25,8 @@ namespace restapipractise.Data
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
-
+            modelBuilder.Entity<VideoCollection>().HasIndex(u => u.TitleName).IsUnique();
+            modelBuilder.Entity<ApplicationUser>().HasIndex(u => u.Name).IsUnique();
             modelBuilder.Entity<ApplicationUser>().HasData(
                 new ApplicationUser
                 {
@@ -65,7 +65,7 @@ new VideoCollection
     Description = "Amazing movie",
     Price = 100
 });
-
+            
         }
     }
 }

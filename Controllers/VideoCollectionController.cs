@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using RentalVideoSystem.DTO_Modals;
 using RentalVideoSystem.Interfaces;
 using RentalVideoSystem.Modals;
 using restapipractise.Data;
@@ -17,16 +18,35 @@ namespace RentalVideoSystem.Controllers
             }
 
 
-            [HttpPost]
-        public void AddVideo([FromBody] VideoCollection VideoCasste)
+        [HttpPost]
+        public IActionResult AddVideo([FromBody] VideoDTOModal Obj)
         {
-                _videocollectionRepo.AddVideo(VideoCasste);
-        }
-            [HttpGet]
+            try { 
 
-            public IEnumerable<VideoCollection> GetAllVideos()
+            if (_videocollectionRepo.AddVideo(Obj))
             {
-                return _videocollectionRepo.GetAllVideos();
+                return Ok("Video has been succesffuly added");
             }
+            else
+            {
+                return NotFound("Video already exist in the collection");
+            }
+        }catch (Exception ex)
+            {
+                throw new Exception("Exception occured as because of some internal error", ex);
+    }
+}
+        [HttpGet]
+
+        public IEnumerable<VideoCollection> GetAllVideos()
+        {
+            try { 
+            return _videocollectionRepo.GetAllVideos();
+        }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception occured as because of some internal error", ex);
+            }
+        }
         }
 }

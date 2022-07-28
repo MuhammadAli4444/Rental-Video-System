@@ -1,4 +1,5 @@
-﻿using RentalVideoSystem.Interfaces;
+﻿using RentalVideoSystem.DTO_Modals;
+using RentalVideoSystem.Interfaces;
 using RentalVideoSystem.Modals;
 using restapipractise.Data;
 
@@ -18,10 +19,25 @@ namespace RentalVideoSystem.Repository
         }
 
 
-        public void AddVideo(VideoCollection VideoCasste)
+        public bool AddVideo(VideoDTOModal Obj)
         {
-            _context.VideoTable.Add((VideoCollection)VideoCasste);
-            _context.SaveChanges();
+    
+            var video = _context.VideoTable.Where(x => x.TitleName.Contains(Obj.TitleName)).ToList();
+       
+            if (video != null)
+            {
+                VideoCollection VideoCasste = new VideoCollection();
+                VideoCasste.TitleName = Obj.TitleName;
+                VideoCasste.Price = Obj.Price;
+                VideoCasste.Description = Obj.Description;
+                _context.VideoTable.Add((VideoCollection)VideoCasste);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

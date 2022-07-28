@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace RentalVideoSystem.Modals
 {
@@ -7,6 +8,7 @@ namespace RentalVideoSystem.Modals
         [Key]
         public int VideoId { get; set; }
         [Required]
+      //  [Index(IsUnique = true)]
         public string? TitleName { get; set; }
         [MaxLength(500)]
         public string? Description { get; set; }

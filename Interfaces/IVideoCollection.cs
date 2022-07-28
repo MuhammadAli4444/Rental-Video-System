@@ -1,11 +1,12 @@
-﻿using RentalVideoSystem.Modals;
+﻿using RentalVideoSystem.DTO_Modals;
+using RentalVideoSystem.Modals;
 
 namespace RentalVideoSystem.Interfaces
 {
     public interface IVideoCollection
     {
         public IEnumerable<VideoCollection> GetAllVideos();
-        public void AddVideo(VideoCollection VideoCasste);
+        public bool AddVideo(VideoDTOModal Obj);
 
     }
 }

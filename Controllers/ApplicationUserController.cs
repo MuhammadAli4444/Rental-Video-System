@@ -18,18 +18,14 @@ namespace RentalVideoSystem.Controllers
         {
             return Ok(_ApplicationUserRepo.GetAllApplicationUser());
         }
-        [HttpGet("{id}")]
+    // [HttpGet("{id}")]
 
-        public ActionResult<IEnumerable<ApplicationUserController>> GetApplicationUserById(int id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest("Invalid Id Entered");
-            }
-            return Ok(ModelState);
+     //  public ActionResult<IEnumerable<ApplicationUserController>> GetApplicationUserById(int id)
+      // {
+     //      return _ApplicationUserRepo.GetApplicationUserById(id);
 
 
 
-        }
+      // }
     }
 }
