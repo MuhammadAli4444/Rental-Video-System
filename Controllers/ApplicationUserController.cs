@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RentalVideoSystem.Interfaces;
 
 namespace RentalVideoSystem.Controllers
@@ -12,7 +13,7 @@ namespace RentalVideoSystem.Controllers
         {
             _ApplicationUserRepo = managerRepo;
         }
-        [HttpGet]
+        [HttpGet, Authorize(Roles = "Manager")]
 
         public ActionResult<IEnumerable<ApplicationUserController>> GetAllApplicationUser()
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using RentalVideoSystem.DTO_Modals;
 using RentalVideoSystem.Interfaces;
@@ -18,7 +19,7 @@ namespace RentalVideoSystem.Controllers
             }
 
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "Manager")]
         public IActionResult AddVideo([FromBody] VideoDTOModal Obj)
         {
             try { 
@@ -36,7 +37,7 @@ namespace RentalVideoSystem.Controllers
                 throw new Exception("Exception occured as because of some internal error", ex);
     }
 }
-        [HttpGet]
+        [HttpGet,Authorize(Roles ="Customer,Manager")]
 
         public IEnumerable<VideoCollection> GetAllVideos()
         {

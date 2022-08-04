@@ -17,7 +17,7 @@ namespace RentalVideoSystem.Repository
         }
 
 
-        public bool AddCustomer(CustomerDTOModal Users)
+        public bool AddCustomer(Customer Users)
         {
             Customer UserForDb = new Customer();
             UserForDb.ApplicationUser = Users.ApplicationUser;
@@ -26,17 +26,18 @@ namespace RentalVideoSystem.Repository
             return true;
         }
 
-        public ActionResult<IEnumerable<CustomerDTOModal>> GetAllCustomers()
+        public ActionResult<IEnumerable<Customer>> GetAllCustomers()
         {
-         //  var AllCustomers= _context.Customer.Include(c => c.ApplicationUser).ToList();
-            List<CustomerDTOModal> Customers = new List<CustomerDTOModal>();
+          return _context.Customer.Include(c => c.ApplicationUser).ToList();
+         /*   List<CustomerDTOModal> Customers = new List<CustomerDTOModal>();
             foreach(Customer cust in _context.Customer.Include(c => c.ApplicationUser).ToList())
-            {
+           {
                 CustomerDTOModal CustomerDTO= new CustomerDTOModal();
                 CustomerDTO.ApplicationUser = cust.ApplicationUser;
                 Customers.Add(CustomerDTO);
-            }
-            return Customers;
+           }
+            return Customers;*/
+         
         }
     }
 }

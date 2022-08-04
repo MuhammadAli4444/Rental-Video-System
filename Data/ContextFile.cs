@@ -27,36 +27,38 @@ namespace restapipractise.Data
             }
             modelBuilder.Entity<VideoCollection>().HasIndex(u => u.TitleName).IsUnique();
             modelBuilder.Entity<ApplicationUser>().HasIndex(u => u.Name).IsUnique();
-            modelBuilder.Entity<ApplicationUser>().HasData(
-                new ApplicationUser
-                {
-                    GenericId = 1,
-                    Name = "MAMB",
-                    Email = "ali123mazhar@gmail.com",
-                    MobileNumber = "03035024309",
-                    Role = "Manager"
-                },
-                  new ApplicationUser
-                  {
-                      GenericId = 2,
-                      Name = "Abdullah",
-                      Email = "abdullah@gmail.com",
-                      MobileNumber = "03035024308",
-                      Role = "Customer"
-                  }
-                ) ;
-            modelBuilder.Entity<Manager>().HasData(
-new Manager
-{
+//            modelBuilder.Entity<ApplicationUser>().HasData(
+//                new ApplicationUser
+//                {
+//                    GenericId = 1,
+//                    Name = "MAMB",
+//                    Email = "ali123mazhar@gmail.com",
+//                    MobileNumber = "03035024309",
+//                    Role = "Manager",
+//                    PasswordHash=null
+//                },
+//                  new ApplicationUser
+//                  {
+//                      GenericId = 2,
+//                      Name = "Abdullah",
+//                      Email = "abdullah@gmail.com",
+//                      MobileNumber = "03035024308",
+//                      Role = "Customer",
+//                      PasswordHash = null
+//                  }
+//                ) ;
+//            modelBuilder.Entity<Manager>().HasData(
+//new Manager
+//{
 
-Id = 1
-});
-            modelBuilder.Entity<Customer>().HasData(
-new Customer
-{
+//Id = 1
+//});
+//            modelBuilder.Entity<Customer>().HasData(
+//new Customer
+//{
 
-    Id = 1
-});
+//    Id = 1
+//});
             modelBuilder.Entity<VideoCollection>().HasData(
 new VideoCollection
 {

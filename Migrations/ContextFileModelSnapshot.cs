@@ -42,6 +42,10 @@ namespace RentalVideoSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -57,24 +61,6 @@ namespace RentalVideoSystem.Migrations
                     b.HasIndex("StoreId");
 
                     b.ToTable("ApplicationUser");
-
-                    b.HasData(
-                        new
-                        {
-                            GenericId = 1,
-                            Email = "ali123mazhar@gmail.com",
-                            MobileNumber = "03035024309",
-                            Name = "MAMB",
-                            Role = "Manager"
-                        },
-                        new
-                        {
-                            GenericId = 2,
-                            Email = "abdullah@gmail.com",
-                            MobileNumber = "03035024308",
-                            Name = "Abdullah",
-                            Role = "Customer"
-                        });
                 });
 
             modelBuilder.Entity("RentalVideoSystem.Modals.Customer", b =>
@@ -93,12 +79,6 @@ namespace RentalVideoSystem.Migrations
                     b.HasIndex("ApplicationUserGenericId");
 
                     b.ToTable("Customer");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1
-                        });
                 });
 
             modelBuilder.Entity("RentalVideoSystem.Modals.Manager", b =>
@@ -117,12 +97,6 @@ namespace RentalVideoSystem.Migrations
                     b.HasIndex("ApplicationUserGenericId");
 
                     b.ToTable("Manager");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1
-                        });
                 });
 
             modelBuilder.Entity("RentalVideoSystem.Modals.RentedVideos", b =>

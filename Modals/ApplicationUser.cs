@@ -5,11 +5,10 @@ namespace RentalVideoSystem.Modals
     public class ApplicationUser
     {
         [Key]
-
         public int GenericId { get; set; }
 
         [Required(ErrorMessage ="Please Enter your Name")]
-        public string? Name { get; set; }
+        public string? Name { get; set; } = string.Empty;
         [Required]
         [RegularExpression(".+\\@.+\\..+",ErrorMessage ="Please Enter valid email")]
         public string? Email { get; set; }
@@ -20,6 +19,7 @@ namespace RentalVideoSystem.Modals
         [Required]
         public string? Role { get; set; } = "Customer";
 
-        
+  
+        public string Password { get; set; }=string.Empty;
     }
 }

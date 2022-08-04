@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RentalVideoSystem.DTO_Modals;
 using RentalVideoSystem.Interfaces;
@@ -18,7 +19,7 @@ namespace RentalVideoSystem.Controllers
         }
 
        
-               [HttpGet]
+              [HttpGet, Authorize(Roles = "Manager")]
 
         public ActionResult<IEnumerable<VideoCollection>> GetAllRentedVideosDetails()
         {
@@ -31,7 +32,7 @@ namespace RentalVideoSystem.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "Customer")]
         public void RentVideo([FromBody] RentedVideoDTOModal RentalVideoCassetObj)
         {
             try
@@ -43,7 +44,7 @@ namespace RentalVideoSystem.Controllers
                 throw new Exception("Exception occured as because of some internal error", ex);
             }
         }
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize(Roles = "Customer")]
         public IActionResult ReturnVideo(int id)
         {
             try

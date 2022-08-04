@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using RentalVideoSystem.DTO_Modals;
+using System.ComponentModel.DataAnnotations;
 
 namespace RentalVideoSystem.Modals
 {

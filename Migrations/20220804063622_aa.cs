@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RentalVideoSystem.Migrations
 {
-    public partial class a : Migration
+    public partial class aa : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,6 +36,7 @@ namespace RentalVideoSystem.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MobileNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: true),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StoreId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -121,25 +122,6 @@ namespace RentalVideoSystem.Migrations
                         principalColumn: "StoreId",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.InsertData(
-                table: "ApplicationUser",
-                columns: new[] { "GenericId", "Email", "MobileNumber", "Name", "Role", "StoreId" },
-                values: new object[,]
-                {
-                    { 1, "ali123mazhar@gmail.com", "03035024309", "MAMB", "Manager", null },
-                    { 2, "abdullah@gmail.com", "03035024308", "Abdullah", "Customer", null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Customer",
-                columns: new[] { "Id", "ApplicationUserGenericId" },
-                values: new object[] { 1, null });
-
-            migrationBuilder.InsertData(
-                table: "Manager",
-                columns: new[] { "Id", "ApplicationUserGenericId" },
-                values: new object[] { 1, null });
 
             migrationBuilder.InsertData(
                 table: "VideoTable",

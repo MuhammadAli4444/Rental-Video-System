@@ -7,8 +7,8 @@ namespace RentalVideoSystem.Interfaces
 {
     public interface ICustomer
     {
-        public bool AddCustomer(CustomerDTOModal Users);
-        public ActionResult<IEnumerable<CustomerDTOModal>> GetAllCustomers();
+        public bool AddCustomer(Customer Users);
+        public ActionResult<IEnumerable<Customer>> GetAllCustomers();
        
       
     }

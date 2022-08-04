@@ -1,4 +1,5 @@
 ﻿using RentalVideoSystem.Controllers;
+using RentalVideoSystem.DTO_Modals;
 using RentalVideoSystem.Interfaces;
 using RentalVideoSystem.Modals;
 using restapipractise.Data;
@@ -25,6 +26,11 @@ namespace RentalVideoSystem.Repository
             yield return _context.ApplicationUser.Where(p => p.GenericId == id)
                 .FirstOrDefault();
         }
-      
+        public  async Task<ApplicationUser> GetUserByEmail(string email)
+        {
+            ApplicationUser user = _context.ApplicationUser.FirstOrDefault(m => m.Email == email);
+            return user;
+        }
+
     }
 }

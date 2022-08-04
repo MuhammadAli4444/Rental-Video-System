@@ -6,6 +6,7 @@ using MimeKit.Text;
 using MailKit.Net.Smtp;
 using RentalVideoSystem.Modals;
 using restapipractise.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RentalVideoSystem.Controllers
 {
@@ -21,7 +22,7 @@ namespace RentalVideoSystem.Controllers
             _context = context;
         }
 
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "Manager")]
         public IActionResult SendEmail(EmailDto request)
         {
             try { 
